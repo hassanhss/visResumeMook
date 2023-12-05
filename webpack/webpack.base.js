@@ -7,6 +7,7 @@ module.exports = {
     alias: {
       '@src': path.join(__dirname, '../', 'app/renderer'),
       '@assets': path.join(__dirname,'../','assert/'),
+      '@common': path.join(__dirname,'../','app/renderer/common')
     },
   },
   module: {

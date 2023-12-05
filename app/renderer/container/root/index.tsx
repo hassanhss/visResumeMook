@@ -3,17 +3,19 @@ import React from 'react';
 import './index.less';
 import Log from '@assets/logo.png'
 import { useHistory } from 'react-router';
-import { Shell, shell } from 'electron';
+import { shell } from 'electron';
+import { ROUTER_ENTRY } from '@common/constants/router';
+import { isHttpOrHttpsUrl } from '@src/common/utils/router';
 
 function Root() {
   // 👇 通过 history.push 进行跳转
   const history = useHistory();
 
-  const onRouterToLink = (text:string) => {
-    if (text !== '简历') {
-      shell.openExternal('https://github.com/PDKSophia/visResumeMook')
+  const onRouterToLink = (router:TSRouter.Item) => {
+    if (isHttpOrHttpsUrl(router.url)) {
+      shell.openExternal(router.url)
     } else {
-      history.push('/resume')
+      history.push(router.url)
     }
   }
 
@@ -24,8 +26,12 @@ function Root() {
         <div styleName="title">VisResumeMook</div>
         <div styleName='tips'>this is a profile make platform</div>
         <div styleName='action'>
-          {['介绍','简历','源码'].map((text,index)=>{
-              return <div key={index} styleName='item'>{text}</div>
+          {ROUTER_ENTRY.map((router: TSRouter.Item) => {
+            return (
+              <div key={router.key} styleName="item" onClick={() => onRouterToLink(router)} >
+                {router.text}
+              </div>
+            );
           })}
         </div>
         <div styleName='copyright'>
