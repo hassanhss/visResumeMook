@@ -1,5 +1,5 @@
 import React from 'react';
-import lessStyle from './index.less';
+import './index.less';
 
 interface IPorps {
     /**
@@ -14,7 +14,7 @@ interface IPorps {
 
 function Title({text,styles}: IPorps){
     return (
-        <div style={styles} className={lessStyle.title}>
+        <div style={styles} styleName="title">
             {text}
         </div>
     )
