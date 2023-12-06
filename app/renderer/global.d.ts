@@ -3,4 +3,8 @@ declare module '*.jpg' {
     const jpg: string;
     export default jpg;
 }
+
+declare module 'redux-logger';
+
+declare module 'rc-redux-model';
   

@@ -15,10 +15,12 @@ function createWindow() {
     width: 1200,
     height: 800,
     webPreferences: {
-      devTools: true,
       nodeIntegration: true,
     },
   });
+
+  // 开启调试模式
+  mainWindow.webContents.openDevTools();
 
   if (isDev()) {
     // 👇 看到了吗，在开发环境下，我们加载的是运行在 7001 端口的 React
