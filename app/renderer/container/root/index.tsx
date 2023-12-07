@@ -6,6 +6,7 @@ import { useHistory } from 'react-router';
 import { shell } from 'electron';
 import { ROUTER_ENTRY } from '@common/constants/router';
 import { isHttpOrHttpsUrl } from '@src/common/utils/router';
+import { useSelector } from 'react-redux';
 
 function Root() {
   // 👇 通过 history.push 进行跳转
@@ -18,6 +19,9 @@ function Root() {
       history.push(router.url)
     }
   }
+
+  const appName = useSelector((state: any) => state.globalModel.appName);
+  console.log('appName=',appName);
 
   return (
     <div styleName="root">
