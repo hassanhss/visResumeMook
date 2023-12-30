@@ -4,7 +4,7 @@ declare module '*.jpg' {
     export default jpg;
 }
 
-declare module 'redux-logger';
-
-declare module 'rc-redux-model';
-  
+declare module '*.png' {
+    const png: string;
+    export default png;
+}

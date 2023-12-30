@@ -19,7 +19,7 @@ module.exports = {
             {
               exclude: 'node_modules',
               webpackHotModuleReloading: true,
-              generateScopedName: '[name]__[local]__[hash:base64:5]',
+              generateScopedName: '[name]__[local]__[fullhash:base64:5]',
               autoResolveMultipleImports: true,
               filetypes: {
                 '.less': { syntax: 'postcss-less' },

@@ -16,6 +16,7 @@ function createWindow() {
     height: 800,
     webPreferences: {
       nodeIntegration: true,
+      enableRemoteModule: true, //是否允许渲染进程使用远程模块
     },
   });
 

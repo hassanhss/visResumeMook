@@ -1,14 +1,26 @@
 // renderer/container/root/index.tsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import './index.less';
 import Log from '@assets/logo.png'
 import { useHistory } from 'react-router';
 import { shell } from 'electron';
 import { ROUTER_ENTRY } from '@common/constants/router';
 import { isHttpOrHttpsUrl } from '@src/common/utils/router';
-import { useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '@src/store';
+import { increment } from '@src/store/modules/appNameSlice';
 
 function Root() {
+  const { count } = useAppSelector((state) => state.counter);
+  const dispatch = useAppDispatch();
+  console.log(count);
+
+  useEffect(()=>{
+    setTimeout(() => {
+      console.log("3s 后修改...");
+      dispatch(increment(1))
+    },3000);
+  },[]);
+
   // 👇 通过 history.push 进行跳转
   const history = useHistory();
 
@@ -19,9 +31,6 @@ function Root() {
       history.push(router.url)
     }
   }
-
-  const appName = useSelector((state: any) => state.globalModel.appName);
-  console.log('appName=',appName);
 
   return (
     <div styleName="root">
@@ -38,6 +47,7 @@ function Root() {
             );
           })}
         </div>
+        <div>{count}</div>
         <div styleName='copyright'>
           <div styleName='footer'>
             <p styleName='copyright'>
