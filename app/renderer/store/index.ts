@@ -1,18 +1,21 @@
 import { configureStore } from "@reduxjs/toolkit";
+
 import logger from "redux-logger";
+
 import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
+
 // 引入每一个reducer
-import countReducer from "./modules/appNameSlice";
+import count from "./modules/appNameSlice";
 
 export const store = configureStore({
-  reducer: countReducer,
+  reducer: {count},
   // 配置中间件
-  // RTK已经默认使用了redux-thunk,这里不需要额外引入了
+  // RTk已经默认使用了redux-thunk,这里不需要额外引入了
   // 如果需要一些自定义的中间件,可以通过调用getDefaultMiddleware
   // 并将结果包含在返回的中间件数组中
   // 案例中使用了日志的中间件,可以追踪到哪个页面在哪个时候使用了该reducer
   // 并且可以显示调用前的数据状态和调用后的数据状态
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger as any),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({}).concat(logger as any),
 });
 
 // 全局定义 dispatch和state的类型,并导出

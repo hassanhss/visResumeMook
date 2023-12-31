@@ -10,14 +10,16 @@ import { useAppDispatch, useAppSelector } from '@src/store';
 import { increment } from '@src/store/modules/appNameSlice';
 
 function Root() {
-  const { count } = useAppSelector((state) => state.counter);
+  const { counter } = useAppSelector((state) => state.count);
   const dispatch = useAppDispatch();
-  console.log(count);
+  console.log('使用redux获取到的值为')
+  console.log(counter);
 
   useEffect(()=>{
     setTimeout(() => {
       console.log("3s 后修改...");
       dispatch(increment(1))
+      console.log(counter)
     },3000);
   },[]);
 
@@ -47,7 +49,7 @@ function Root() {
             );
           })}
         </div>
-        <div>{count}</div>
+        <div>{counter}</div>
         <div styleName='copyright'>
           <div styleName='footer'>
             <p styleName='copyright'>

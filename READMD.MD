@@ -8,4 +8,4 @@ npm install @babel/plugin-transform-runtime@7.14.3 --save-dev
 npm install @babel/plugin-transform-modules-commonjs@7.14.0 --save-dev
 
 ```
-
+css-loader版本不对引起的问题，参考[!https://segmentfault.com/q/1010000040029248]
