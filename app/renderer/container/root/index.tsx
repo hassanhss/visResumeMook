@@ -7,7 +7,7 @@ import { shell } from 'electron';
 import { ROUTER_ENTRY } from '@common/constants/router';
 import { isHttpOrHttpsUrl } from '@src/common/utils/router';
 import { useAppDispatch, useAppSelector } from '@src/store';
-import { increment } from '@src/store/modules/appNameSlice';
+import { nameChange } from '@src/store/modules/appNameSlice';
 
 function Root() {
   const { appName } = useAppSelector((state) => state.appName);
@@ -18,7 +18,7 @@ function Root() {
   useEffect(()=>{
     setTimeout(() => {
       console.log("3s 后修改...");
-      dispatch(increment(1))
+      dispatch(nameChange('Hassan Resume Desktop'))
       console.log(appName)
     },3000);
   },[]);
