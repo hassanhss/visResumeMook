@@ -10,7 +10,7 @@ const devConfig = {
     index: path.resolve(__dirname, '../app/renderer/app.tsx'),
   },
   output: {
-    filename: '[name].js',
+    filename: '[name].[hash].js',
     path: path.resolve(__dirname, '../dist'),
   },
   target: 'electron-renderer',
@@ -22,14 +22,6 @@ const devConfig = {
     port: 7001, // 启动端口为 7001 的服务
     hot: true,
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      // 👇 以此文件为模版，自动生成 HTML
-      template: path.resolve(__dirname, '../app/renderer/index.html'),
-      filename: path.resolve(__dirname, '../dist/index.html'),
-      chunks: ['index'],
-    }),
-  ],
   module: {
     rules: [
       {
@@ -39,10 +31,33 @@ const devConfig = {
       {
         test: /\.less$/,
         exclude: /node_modules/,
-        use: ["style-loader", "css-loader", "less-loader"],
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: {
+                auto: (resourcePath) => resourcePath.endsWith('.less'),  // 匹配.less文件来进行css模块化。
+                localIdentName: '[name]__[local]__[hash:base64:5]',
+              },
+            },
+          },
+          'postcss-loader',
+          'less-loader',
+        ],
       },
     ],
-  }
+  },
+  
+  plugins: [
+    new HtmlWebpackPlugin({
+      // 👇 以此文件为模版，自动生成 HTML
+      template: path.resolve(__dirname, '../app/renderer/index.html'),
+      filename: path.resolve(__dirname, '../dist/index.html'),
+      chunks: ['index'],
+    }),
+  ],
 };
 
 module.exports = webpackMerge.merge(baseConfig, devConfig);
