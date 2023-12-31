@@ -5,10 +5,10 @@ import logger from "redux-logger";
 import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
 
 // 引入每一个reducer
-import count from "./modules/appNameSlice";
+import appName from "./modules/appNameSlice";
 
 export const store = configureStore({
-  reducer: {count},
+  reducer: {appName},
   // 配置中间件
   // RTk已经默认使用了redux-thunk,这里不需要额外引入了
   // 如果需要一些自定义的中间件,可以通过调用getDefaultMiddleware
