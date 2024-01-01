@@ -1,5 +1,5 @@
 import React from 'react';
-import classnames from 'classnames';
+import classNames from 'classnames';
 import './index.less';
 
 export interface Button {
@@ -53,7 +53,7 @@ function MyButton({ size = 'small', style, width, children, disabled, className,
             width: width
         }}
         className={className}
-        styleName={classnames('es-button', {
+        styleName={classNames('es-button', {
             [`es-button-${size}`]: true,
             'es-button-disabled': disabled,
             'es-button-border': border,
